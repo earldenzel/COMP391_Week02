@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour {
 
     //Private fields
     private Rigidbody2D rb;
+    private AudioSource aud;
 
     //Time delay for shooting
     public float nextFire = 0.5f;
@@ -24,7 +25,7 @@ public class PlayerController : MonoBehaviour {
 	void Start ()
     {
         rb = GetComponent<Rigidbody2D>();
-
+        aud = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame (NON PHYSICS)
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetButton("Fire1") && myTime > nextFire)
         {
             Instantiate(laser, laserSpawn.position, laserSpawn.rotation);
+            aud.Play();
             myTime = 0.0f;
         }
     }
